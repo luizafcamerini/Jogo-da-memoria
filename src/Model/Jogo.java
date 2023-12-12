@@ -1,8 +1,9 @@
+package Model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Jogo {
+class Jogo {
     ArrayList<Carta> baralho;
     ArrayList<Carta> cartasDescobertas;
     ArrayList<Carta> cartasMostradas;

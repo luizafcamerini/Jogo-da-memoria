@@ -1,4 +1,7 @@
-public class Carta {
+package Model;
+import javax.swing.JPanel;
+
+class Carta{
     private Simbolos simbolo;
     private boolean mostrada = false;
 

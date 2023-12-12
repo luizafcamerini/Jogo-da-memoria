@@ -1,0 +1,4 @@
+package Model;
+enum Simbolos{
+    CIRCULO, QUADRADO, TRIANGULO, RETANGULO, ESTRELA, HEXAGONO, LOSANGO
+}
