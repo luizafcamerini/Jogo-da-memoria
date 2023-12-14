@@ -19,7 +19,7 @@ public class ViewAPI {
 
     public void criaTela(){
         Painel p = new Painel();
-        Tela t = new Tela(p);
+        new Tela(p);
     }
 
 }
