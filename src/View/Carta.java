@@ -7,8 +7,10 @@ import java.awt.event.MouseListener;
 import java.awt.geom.*;
 
 class Carta extends JPanel implements MouseListener{
-    private int x,y,w = 100,h = 100;
+    private int x,y,w = 90,h = 170;
     private Color bordaCarta = new java.awt.Color(138, 205, 215);
+    private Color corPreenchimento = Color.white;
+    private boolean selecionada = false;
 
     public Carta(int x, int y){
         this.x = x;
@@ -21,16 +23,31 @@ class Carta extends JPanel implements MouseListener{
         super.paintComponent(g); // Adicione esta linha
         Graphics2D g2d = (Graphics2D) g;
         RoundRectangle2D.Double r = new RoundRectangle2D.Double(0,0, w, h, 15, 15);
-        g2d.setColor(Color.white);
+        g2d.setColor(corPreenchimento);
         g2d.fill(r);
         g2d.setColor(bordaCarta);
         g2d.setStroke(new BasicStroke(10));
         g2d.draw(r);
     }
 
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("CLICOU");
+        if(this.corPreenchimento == Color.white || this.corPreenchimento == Color.gray){
+            this.corPreenchimento = Color.red;
+        }
+        else{
+            this.corPreenchimento = Color.white;
+        }
+        this.selecionada = !selecionada;
+        repaint();
     }
 
     @Override
@@ -43,11 +60,22 @@ class Carta extends JPanel implements MouseListener{
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("ENTROU");
+        if (!selecionada){
+            this.corPreenchimento = Color.gray;
+        }
+        repaint();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        if (!selecionada){
+            this.corPreenchimento = Color.white;
+        }
+        repaint();
+    }
+
+    public void setSelecionada(boolean b){
+        this.selecionada = b;
     }
 
 }

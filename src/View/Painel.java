@@ -8,21 +8,28 @@ import javax.swing.JPanel;
 
 class Painel extends JPanel implements MouseListener{
     private Carta[] cartas;
-    private Carta c;
+    // private Carta c;
 
     public Painel(){
-        setLayout(null); // Adicione esta linha
-        c = new Carta(100, 100);
-        // c.setBounds(0, 100, 100, 100); // Adicione esta linha
+        setLayout(null);
+        // c = new Carta(100, 100);
         addMouseListener(this);
-        this.add(c); // Adicione esta linha
+        cartas = new Carta[20];
+        
+        for (int i = 0; i< cartas.length; i++){
+            int x = (i % 5) * 120+180;
+            int y = (i / 5) * 190;
+            cartas[i] = new Carta(x, y);
+            // System.out.printf("X: %d Y: %d\n",cartas[i].getX(), cartas[i].getY());
+            this.add(cartas[i]);
+        }
     }
 
     public void paintComponent(Graphics g){
     }
 
     public void mouseClicked(MouseEvent e) {
-        System.out.println("CLICOU NO PAINEL");
+        // System.out.println("CLICOU NO PAINEL");
     }
 
     public void mousePressed(MouseEvent e) {
@@ -32,7 +39,7 @@ class Painel extends JPanel implements MouseListener{
     }
 
     public void mouseEntered(MouseEvent e) {
-        System.out.println("ENTROU NO PAINEL");
+        // System.out.println("ENTROU NO PAINEL");
     }
 
     public void mouseExited(MouseEvent e) {
