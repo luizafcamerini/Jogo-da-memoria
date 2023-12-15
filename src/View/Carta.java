@@ -8,26 +8,40 @@ import java.awt.geom.*;
 
 class Carta extends JPanel implements MouseListener{
     private int x,y,w = 90,h = 170;
-    private Color bordaCarta = new java.awt.Color(138, 205, 215);
+    private Color corSelecionada = new Color(248, 117, 170);
+    private Color corDeselecionada = new Color(174, 222, 252);
     private Color corPreenchimento = Color.white;
+    private Color corBorda = corDeselecionada;
     private boolean selecionada = false;
 
     public Carta(int x, int y){
         this.x = x;
         this.y = y;
         setBounds(x,y,w,h);
-        addMouseListener(this); // Adicione esta linha
+        addMouseListener(this);
     }
 
     public void paintComponent(Graphics g){
-        super.paintComponent(g); // Adicione esta linha
         Graphics2D g2d = (Graphics2D) g;
         RoundRectangle2D.Double r = new RoundRectangle2D.Double(0,0, w, h, 15, 15);
         g2d.setColor(corPreenchimento);
         g2d.fill(r);
-        g2d.setColor(bordaCarta);
+        if(selecionada){
+            corBorda = corSelecionada;
+        }
+        else{
+            corBorda = corDeselecionada;
+        }
+        g2d.setColor(corBorda);
         g2d.setStroke(new BasicStroke(10));
         g2d.draw(r);
+        // System.out.printf("X: %d Y: %d W: %d H: %d\n",x,y, w,h);
+        int raio = 50;
+        int xCentro = w/2-(raio/2);
+        int yCentro = h/2-(raio/2);
+        Ellipse2D.Double e = new Ellipse2D.Double(xCentro,yCentro,raio,raio);
+        g2d.setColor(Color.red);
+        g2d.fill(e);
     }
 
     public int getX(){
@@ -38,35 +52,24 @@ class Carta extends JPanel implements MouseListener{
         return this.y;
     }
 
-    @Override
     public void mouseClicked(MouseEvent e) {
-        if(this.corPreenchimento == Color.white || this.corPreenchimento == Color.gray){
-            this.corPreenchimento = Color.red;
-        }
-        else{
-            this.corPreenchimento = Color.white;
-        }
         this.selecionada = !selecionada;
         repaint();
     }
 
-    @Override
     public void mousePressed(MouseEvent e) {
     }
 
-    @Override
     public void mouseReleased(MouseEvent e) {
     }
 
-    @Override
     public void mouseEntered(MouseEvent e) {
         if (!selecionada){
-            this.corPreenchimento = Color.gray;
+            this.corPreenchimento = new Color(255, 246, 246);
         }
         repaint();
     }
 
-    @Override
     public void mouseExited(MouseEvent e) {
         if (!selecionada){
             this.corPreenchimento = Color.white;

@@ -20,7 +20,6 @@ class Painel extends JPanel implements MouseListener{
             int x = (i % 5) * 120+180;
             int y = (i / 5) * 190;
             cartas[i] = new Carta(x, y);
-            // System.out.printf("X: %d Y: %d\n",cartas[i].getX(), cartas[i].getY());
             this.add(cartas[i]);
         }
     }
@@ -29,7 +28,6 @@ class Painel extends JPanel implements MouseListener{
     }
 
     public void mouseClicked(MouseEvent e) {
-        // System.out.println("CLICOU NO PAINEL");
     }
 
     public void mousePressed(MouseEvent e) {
@@ -39,7 +37,6 @@ class Painel extends JPanel implements MouseListener{
     }
 
     public void mouseEntered(MouseEvent e) {
-        // System.out.println("ENTROU NO PAINEL");
     }
 
     public void mouseExited(MouseEvent e) {
