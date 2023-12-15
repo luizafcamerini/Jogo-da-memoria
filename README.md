@@ -1,5 +1,5 @@
 # Jogo da memória: Singleton, CMV & Java2D
-### Este é um pequeno repositório para um projeto pessoal de um jogo da memória.
+### Este é um pequeno repositório para um projeto pessoal de um jogo da memória. Os objetivos principais desse projeto são: treinar questões de Programação Orientada à Objetos, praticar na linguagen Java, e se divertir fazendo o que gosto :)
 As regras são simples: o jogo acaba apenas quando o jogador achar todos os pares de cartas correspondentes.
 
 O jogador poderá escolher entre dois modos de jogo:
