@@ -10,7 +10,6 @@ class Jogo {
     private int maxTentativas = 15;
 
     public Jogo(){
-        baralho = criaBaralho();
         while(true){
             printaBaralho();
             Carta carta1 = baralho.get(pedeCarta());
@@ -61,7 +60,7 @@ class Jogo {
         System.out.println("--------------------------------------------");
     }
 
-    private boolean verificaCartasIguais(Carta c1, Carta c2){
+    public boolean verificaCartasIguais(Carta c1, Carta c2){
         return c1.getSimbolo() == c2.getSimbolo();
     }
 

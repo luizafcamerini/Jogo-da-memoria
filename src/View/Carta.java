@@ -13,6 +13,7 @@ class Carta extends JPanel implements MouseListener{
     private Color corPreenchimento = Color.white;
     private Color corBorda = corDeselecionada;
     private boolean selecionada = false;
+    private String simbolo;
 
     public Carta(int x, int y){
         this.x = x;
@@ -23,7 +24,7 @@ class Carta extends JPanel implements MouseListener{
 
     public void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        RoundRectangle2D.Double r = new RoundRectangle2D.Double(0,0, w, h, 15, 15);
+        RoundRectangle2D.Double r = new RoundRectangle2D.Double(0,0, w, h, 20, 20);
         g2d.setColor(corPreenchimento);
         g2d.fill(r);
         if(selecionada){
@@ -33,14 +34,25 @@ class Carta extends JPanel implements MouseListener{
             corBorda = corDeselecionada;
         }
         g2d.setColor(corBorda);
-        g2d.setStroke(new BasicStroke(10));
+        g2d.setStroke(new BasicStroke(15));
         g2d.draw(r);
-        // System.out.printf("X: %d Y: %d W: %d H: %d\n",x,y, w,h);
+        desenhaSimbolo(g2d);
+    }
+
+    private void desenhaSimbolo(Graphics2D g2d){
         int raio = 50;
         int xCentro = w/2-(raio/2);
         int yCentro = h/2-(raio/2);
         Ellipse2D.Double e = new Ellipse2D.Double(xCentro,yCentro,raio,raio);
-        g2d.setColor(Color.red);
+        // switch (this.simbolo) {
+        //     case value:
+                
+        //         break;
+        
+        //     default:
+        //         break;
+        // }
+        g2d.setColor(new Color(248, 117, 170));
         g2d.fill(e);
     }
 

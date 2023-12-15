@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -8,23 +7,12 @@ import javax.swing.JPanel;
 
 class Painel extends JPanel implements MouseListener{
     private Carta[] cartas;
-    // private Carta c;
+    private ViewAPI view = ViewAPI.getInstance();
 
     public Painel(){
         setLayout(null);
-        // c = new Carta(100, 100);
         addMouseListener(this);
-        cartas = new Carta[20];
-        
-        for (int i = 0; i< cartas.length; i++){
-            int x = (i % 5) * 120+180;
-            int y = (i / 5) * 190;
-            cartas[i] = new Carta(x, y);
-            this.add(cartas[i]);
-        }
-    }
-
-    public void paintComponent(Graphics g){
+        cartas = view.criaBaralho(this);
     }
 
     public void mouseClicked(MouseEvent e) {

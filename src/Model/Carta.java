@@ -1,5 +1,4 @@
 package Model;
-import javax.swing.JPanel;
 
 class Carta{
     private Simbolos simbolo;
