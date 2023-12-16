@@ -7,17 +7,19 @@ import java.awt.event.MouseListener;
 import java.awt.geom.*;
 
 class Carta extends JPanel implements MouseListener{
-    private int x,y,w = 90,h = 170;
+    private int x,y, w = 90, h = 170;
     private Color corSelecionada = new Color(248, 117, 170);
     private Color corDeselecionada = new Color(174, 222, 252);
+    private Color corSimbolos = new Color(248, 117, 170);
     private Color corPreenchimento = Color.white;
     private Color corBorda = corDeselecionada;
     private boolean selecionada = false;
     private String simbolo;
 
-    public Carta(int x, int y){
+    public Carta(int x, int y,String simbolo){
         this.x = x;
         this.y = y;
+        this.simbolo = simbolo;
         setBounds(x,y,w,h);
         addMouseListener(this);
     }
@@ -43,17 +45,20 @@ class Carta extends JPanel implements MouseListener{
         int raio = 50;
         int xCentro = w/2-(raio/2);
         int yCentro = h/2-(raio/2);
-        Ellipse2D.Double e = new Ellipse2D.Double(xCentro,yCentro,raio,raio);
-        // switch (this.simbolo) {
-        //     case value:
-                
-        //         break;
-        
-        //     default:
-        //         break;
-        // }
-        g2d.setColor(new Color(248, 117, 170));
-        g2d.fill(e);
+        switch (this.simbolo) {
+            case "CIRCULO":
+                Ellipse2D.Double e = new Ellipse2D.Double(xCentro,yCentro,raio,raio);
+                g2d.setColor(corSimbolos);
+                g2d.fill(e);
+                break;
+            
+            case "QUADRADO":
+                Rectangle2D.Double r = new Rectangle2D.Double(w/4,h/3,w/2,w/2);
+                g2d.setColor(corSimbolos);
+                g2d.fill(r);
+            default:
+                break;
+        }
     }
 
     public int getX(){
@@ -62,6 +67,10 @@ class Carta extends JPanel implements MouseListener{
 
     public int getY(){
         return this.y;
+    }
+
+    public String getSimbolo(){
+        return this.simbolo;
     }
 
     public void mouseClicked(MouseEvent e) {

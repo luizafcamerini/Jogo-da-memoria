@@ -1,9 +1,12 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class ModelAPI {
     private static ModelAPI instance = null;
     private Jogo jogo;
-    private Simbolos simbolos;
 
     private ModelAPI(){}
 
@@ -22,12 +25,15 @@ public class ModelAPI {
         jogo = new Jogo();
     }
 
-    public String[] getNomesSimbolos(){
-        String [] nomes = new String[Simbolos.values().length];
-        for (int i = 0; i<nomes.length; i++){
-            nomes[i] = Simbolos.values().toString();
+    public ArrayList<String> getNomesSimbolos(){
+        Simbolos[] simbolos = Simbolos.values();
+        String [] nomes = new String[simbolos.length];
+        for (int i = 0; i < simbolos.length; i++){
+            nomes[i] = simbolos[i].toString();
         }
-        return nomes;
+        ArrayList<String> temp = new ArrayList<>(Arrays.asList(nomes));
+        Collections.shuffle(temp);
+        return temp;
     }
 
 }
