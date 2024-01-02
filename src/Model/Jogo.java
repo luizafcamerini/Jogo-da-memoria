@@ -2,32 +2,33 @@ package Model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.Stack;
 
 class Jogo {
     ArrayList<Carta> baralho;
-    ArrayList<Carta> cartasDescobertas;
-    ArrayList<Carta> cartasMostradas;
+    Stack<Carta> cartasMostradas;
     private int maxTentativas = 15;
+    private int contadorCartasClicadas = 0;
 
     public Jogo(){
         while(true){
             printaBaralho();
             Carta carta1 = baralho.get(pedeCarta());
-            mostraCarta(carta1);
             Carta carta2 = baralho.get(pedeCarta());
-            mostraCarta(carta2);
+            // Adiciona as cartas na pilha:
+            cartasMostradas.push(carta1);
+            cartasMostradas.push(carta2);
 
             if (verificaCartasIguais(carta1, carta2)){
                 System.out.println("Você acertou um par de cartas!\n");
-                Collections.addAll(cartasDescobertas, carta1, carta2);
             }
             else{
                 System.out.println("Você errou!");
-                escondeCarta(carta2);
-                escondeCarta(carta1);
+                cartasMostradas.pop();
+                cartasMostradas.pop();
             }
             
-            if (cartasDescobertas.size() == baralho.size()){
+            if (cartasMostradas.size() == baralho.size()){
                 System.out.println("VOCE GANHOU!");
                 break;
             }
@@ -40,8 +41,7 @@ class Jogo {
 
     public ArrayList<Carta> criaBaralho(){
         baralho = new ArrayList<Carta>();
-        cartasDescobertas = new ArrayList<Carta>();
-        cartasMostradas = new ArrayList<Carta>();
+        cartasMostradas = new Stack<Carta>();
         for(int j = 0; j<2; j++){
             for (int i = 0; i<Simbolos.values().length; i++){
                 baralho.add(new Carta(Simbolos.values()[i]));
@@ -62,12 +62,6 @@ class Jogo {
 
     public boolean verificaCartasIguais(Carta c1, Carta c2){
         return c1.getSimbolo() == c2.getSimbolo();
-    }
-
-    private void mostraCarta(Carta c){
-        c.setMostrada(true);
-        cartasMostradas.add(c);
-        printaBaralho();
     }
 
     private void escondeCarta(Carta c){

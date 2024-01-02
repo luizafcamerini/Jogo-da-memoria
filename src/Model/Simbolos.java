@@ -6,8 +6,8 @@ enum Simbolos{
     RETANGULO, //OK
     ESTRELA, 
     HEXAGONO, 
-    LOSANGO, 
+    LOSANGO, //OK
     PENTAGONO, 
-    CRUZ, 
+    CRUZ, //OK
     CORACAO
 }
