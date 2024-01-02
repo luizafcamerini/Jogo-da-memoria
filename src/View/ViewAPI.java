@@ -1,8 +1,6 @@
 package View;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import Model.ModelAPI;
@@ -32,7 +30,6 @@ public class ViewAPI {
     }
 
     public ArrayList<Carta> criaBaralho(Painel p){
-        /** Metodo que  */
         ArrayList<Carta> cartas = new ArrayList<Carta>();
         ArrayList<Integer> coordenadasX = new ArrayList<Integer>();
         ArrayList<Integer> coordenadasY = new ArrayList<Integer>();

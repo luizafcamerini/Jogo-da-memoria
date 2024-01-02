@@ -1,12 +1,14 @@
 package View;
 
+import Observer.*;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-class Painel extends JPanel implements MouseListener{
+class Painel extends JPanel implements MouseListener, Observador{
     private ArrayList<Carta> cartas;
     private ViewAPI view = ViewAPI.getInstance();
 
@@ -29,6 +31,9 @@ class Painel extends JPanel implements MouseListener{
     }
 
     public void mouseExited(MouseEvent e) {
+    }
+
+    public void notify(Observado o) {
     }
 
 }

@@ -1,6 +1,8 @@
 package Model;
 
-class Carta{
+import Observer.*;
+
+class Carta implements Observado{
     private Simbolos simbolo;
     private boolean mostrada = false;
 
@@ -18,5 +20,11 @@ class Carta{
 
     public void setMostrada(boolean b){
         this.mostrada = b;
+    }
+
+    public void addObservador(Observador o) {
+    }
+
+    public void removeObservador(Observador o) {
     }
 }

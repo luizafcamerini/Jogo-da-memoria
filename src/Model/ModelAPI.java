@@ -1,4 +1,6 @@
 package Model;
+import Observer.*;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
