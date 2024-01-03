@@ -1,33 +1,42 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import Model.ModelAPI;
 import View.ViewAPI;
 
 public class ControllerAPI {
-    private static ControllerAPI instance = null;
-    private ModelAPI model = null;
-    private ViewAPI view = null;
+	private static ControllerAPI instance;
+	private ModelAPI model;
+	private ViewAPI view;
 
-    public static void main(String[] args) {
-        ControllerAPI control = ControllerAPI.getInstance();
-        control.iniciaJogo();
-    }
+	private ControllerAPI() {
+	}
 
-    private ControllerAPI(){
-        model = ModelAPI.getInstance();
-        view = ViewAPI.getInstance();
-    }
+	public static ControllerAPI getInstance() {
+		if (instance == null) {
+			instance = new ControllerAPI();
+		}
+		return instance;
+	}
 
-    static ControllerAPI getInstance(){
-        if (instance == null){
-            instance = new ControllerAPI();
-        }
-        return instance;
-    }
+	public void inicia() {
+		instance.model = ModelAPI.getInstance();
+		instance.view = ViewAPI.getInstance();
+		iniciaJogo();
+	}
 
-    public void iniciaJogo(){
-        // model.iniciaJogo();
-        view.criaTela();
-    }
+	public ArrayList<String> getNomesSimbolos(){
+		return model.getNomesSimbolos();
+	}
+
+	public void iniciaJogo() {
+		model.iniciaJogo();
+		// view.criaTela();
+	}
+
+	public void criaTela(){
+		view.criaTela();
+	}
 
 }
