@@ -2,14 +2,12 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 import java.util.Stack;
 
 class Jogo {
 	ArrayList<Carta> baralho;
 	Stack<Carta> cartasMostradas;
-	private int maxTentativas = 15;
-	private int contadorCartasClicadas = 0;
+	private final int NUM_CARTAS_SELEC = 2;
 
 	public Jogo() {
 		criaBaralho();

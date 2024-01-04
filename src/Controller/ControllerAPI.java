@@ -3,6 +3,7 @@ package Controller;
 import java.util.ArrayList;
 
 import Model.ModelAPI;
+import Observer.*;
 import View.ViewAPI;
 
 public class ControllerAPI {
@@ -23,20 +24,16 @@ public class ControllerAPI {
 	public void inicia() {
 		instance.model = ModelAPI.getInstance();
 		instance.view = ViewAPI.getInstance();
-		iniciaJogo();
+		model.iniciaJogo();
+		// registraCartaModelView(null, null);
+		view.criaTela();
 	}
 
 	public ArrayList<String> getNomesSimbolos(){
 		return model.getNomesSimbolos();
 	}
 
-	public void iniciaJogo() {
-		model.iniciaJogo();
-		// view.criaTela();
+	public void registraCartaModelView(Observador cartaObservadora, Observado cartaObservada){
+		cartaObservada.addObservador(cartaObservadora);
 	}
-
-	public void criaTela(){
-		view.criaTela();
-	}
-
 }

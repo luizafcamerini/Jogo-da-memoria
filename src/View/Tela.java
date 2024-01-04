@@ -5,10 +5,6 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 public class Tela extends JFrame {
-	/**
-	 * A tela é apenas a aba do jogo. Ela contém o Painel, onde realmente o jogo é
-	 * mostrado.
-	 */
 	private Color corFundo = new Color(255, 246, 246);
 
 	public Tela(Painel p) {

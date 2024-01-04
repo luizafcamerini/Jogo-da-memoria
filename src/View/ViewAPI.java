@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import javax.sound.midi.ControllerEventListener;
-
 import Controller.ControllerAPI;
-import Model.ModelAPI;
 
 public class ViewAPI {
 	private static ViewAPI instance;
@@ -52,7 +49,7 @@ public class ViewAPI {
 			int xRandom = (random.nextInt(coordenadasX.size()));
 			int yRandom = xRandom; // Os indices de X e Y precisam ser iguais
 			cartas.add(
-					new Carta(coordenadasX.get(xRandom), coordenadasY.get(yRandom), simbolos.get(i % (numCartas / 2)), i));
+					new Carta(coordenadasX.get(xRandom), coordenadasY.get(yRandom), simbolos.get(i % (numCartas / 2))));
 			// Remove as coordenadas usadas para que nao haja cartas com sobreposicao
 			coordenadasX.remove(xRandom);
 			coordenadasY.remove(yRandom);
@@ -65,7 +62,6 @@ public class ViewAPI {
 	private void adicionaCartas(Painel p, ArrayList<Carta> cartas) {
 		for (int i = 0; i < cartas.size(); i++) {
 			p.add(cartas.get(i));
-			System.out.printf("%d\n", cartas.get(i).getID());
 		}
 	}
 

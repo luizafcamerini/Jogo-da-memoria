@@ -16,18 +16,22 @@ class Carta extends JPanel implements MouseListener, Observador, Observado {
 	private Color corPreenchimento = Color.white;
 	private Color corBorda = corDeselecionada;
 	private boolean selecionada = false;
-	private boolean mostrada = false;
+	private boolean descoberta = false;
 	private String simbolo;
-	private Observador observador = null;
-	private int id;
+	private Observador observador;
 
-	public Carta(int x, int y, String simbolo, int id) {
+	/* Esse status é usado no model para definir a visualização da carta. */
+	private final int STATUS_ESCONDIDA = 0;
+	private final int STATUS_SELECIONADA = 1;
+	private final int STATUS_DESCOBERTA = 2;
+	private int status = STATUS_ESCONDIDA;
+
+	public Carta(int x, int y, String simbolo) {
 		this.x = x;
 		this.y = y;
 		this.simbolo = simbolo;
 		setBounds(x, y, w, h);
 		addMouseListener(this);
-		this.id = id;
 	}
 
 	public void paintComponent(Graphics g) {
@@ -48,7 +52,7 @@ class Carta extends JPanel implements MouseListener, Observador, Observado {
 	}
 
 	private void desenhaSimbolo(Graphics2D g2d) {
-		if (!mostrada) {
+		if (!descoberta) {
 			if (!selecionada) {
 				return;
 			}
@@ -172,16 +176,12 @@ class Carta extends JPanel implements MouseListener, Observador, Observado {
 		return this.y;
 	}
 
-	public int getID(){
-		return this.id;
-	}
-
 	public String getSimbolo() {
 		return this.simbolo;
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		if (!mostrada) {
+		if (!descoberta) {
 			this.selecionada = !selecionada;
 			repaint();
 		}
@@ -219,11 +219,12 @@ class Carta extends JPanel implements MouseListener, Observador, Observado {
 		this.observador = null;
 	}
 
-	public int get(int i ){
+	public int get(int i){
 		return 0;
 	}
 
-	public void notify(Observado o ){
+	public void notify(Observado o){
+		repaint();
 	}
 
 	public void notificaObservador(Observado o) {
